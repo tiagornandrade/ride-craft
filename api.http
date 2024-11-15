@@ -1,0 +1,19 @@
+### Get Drivers
+GET http://localhost:8000/drivers HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+ontent-Type: application/json
+
+### Get Locations
+GET http://localhost:8000/locations HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+ontent-Type: application/json
+
+### Get Pricings
+GET http://localhost:8000/pricings HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+ontent-Type: application/json
+
+### Get Rides
+GET http://localhost:8000/rides HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+ontent-Type: application/json
