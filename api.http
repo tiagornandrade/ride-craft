@@ -1,19 +1,19 @@
 ### Get Drivers
-GET http://localhost:8000/drivers HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+GET http://localhost:8000/drivers/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTg3ODc0NH0.x7scLXXTNLJGkjB3ik8zchVi20-MNjsncJEEjKLMiPU
 ontent-Type: application/json
 
 ### Get Locations
 GET http://localhost:8000/locations HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTg3NTA4NH0.WNFYoPEtronvE_r8DDuGJdCBqK-L_DewX14372omnVI
 ontent-Type: application/json
 
 ### Get Pricings
 GET http://localhost:8000/pricings HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTg3NTA4NH0.WNFYoPEtronvE_r8DDuGJdCBqK-L_DewX14372omnVI
 ontent-Type: application/json
 
 ### Get Rides
 GET http://localhost:8000/rides HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTY2NjU3MX0.DsMAR1814HO1V3EgoDuzFfQJKm-wZUC0VlVEHkdWp64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTg3NTA4NH0.WNFYoPEtronvE_r8DDuGJdCBqK-L_DewX14372omnVI
 ontent-Type: application/json
