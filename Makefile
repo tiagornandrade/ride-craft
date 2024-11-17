@@ -9,3 +9,6 @@ down:
 
 restart:
 	docker-compose restart
+
+token:
+	python3 token.py

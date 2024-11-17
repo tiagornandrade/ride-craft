@@ -1,111 +1,117 @@
 version: "3.8"
 
 services:
-  # API Gateway
-  gateway:
+  api-gateway:
     build:
-      context: ./gateway
-    container_name: gateway
+      context: ./api-gateway
+    container_name: api-gateway
     ports:
       - "8000:8000"
     environment:
-      - KAFKA_BROKER_URL=kafka:9092
-      - POSTGRES_USER=ridecraft_user
-      - POSTGRES_PASSWORD=securepassword
-      - POSTGRES_DB=ridecraft_db
+      - DRIVER_SERVICE_URL=http://driver-service:8001
+      - RIDE_SERVICE_URL=http://ride_service:8002
+      - LOCATION_SERVICE_URL=http://location_service:8003
+      - PRICING_SERVICE_URL=http://pricing_service:8004
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
-      - kafka
-      - postgres
+      - driver-service
+      - redis
     networks:
       - ridecraft_network
 
-  # NGINX
-  nginx:
-    image: nginx:latest
-    container_name: nginx_proxy
+  driver-service:
+    build:
+      context: ./driver-service
+    container_name: driver-service
     ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - "8001:8001"
+    networks:
+      - ridecraft_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/drivers/"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
     depends_on:
-      - gateway
-    networks:
-      - ridecraft_network
+      - redis
 
-  # Kafka and Zookeeper
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-    ports:
-      - "2181:2181"
-    networks:
-      - ridecraft_network
+  # zookeeper:
+  #   image: confluentinc/cp-zookeeper:latest
+  #   container_name: zookeeper
+  #   environment:
+  #     ZOOKEEPER_CLIENT_PORT: 2181
+  #   ports:
+  #     - "2181:2181"
+  #   networks:
+  #     - ridecraft_network
 
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    container_name: kafka
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    ports:
-      - "9092:9092"
-    depends_on:
-      - zookeeper
-    networks:
-      - ridecraft_network
+  # kafka:
+  #   image: confluentinc/cp-kafka:latest
+  #   container_name: kafka
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #   ports:
+  #     - "9092:9092"
+  #   depends_on:
+  #     - zookeeper
+  #   networks:
+  #     - ridecraft_network
 
-  # PostgreSQL
-  postgres:
-    image: postgres:13
-    container_name: postgres_db
-    environment:
-      POSTGRES_USER: ridecraft_user
-      POSTGRES_PASSWORD: securepassword
-      POSTGRES_DB: ridecraft_db
-    ports:
-      - "5432:5432"
-    networks:
-      - ridecraft_network
+  # postgres:
+  #   image: postgres:13
+  #   container_name: postgres_db
+  #   environment:
+  #     POSTGRES_USER: ridecraft_user
+  #     POSTGRES_PASSWORD: securepassword
+  #     POSTGRES_DB: ridecraft_db
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - ridecraft_network
 
-  # Redis
   redis:
-    image: redis:latest
-    container_name: redis_cache
+    image: "redis:latest"
+    container_name: redis
     ports:
       - "6379:6379"
     networks:
       - ridecraft_network
 
-  # Prometheus
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - ridecraft_network
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: prometheus
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #   ports:
+  #     - "9090:9090"
+  #   networks:
+  #     - ridecraft_network
 
-  # Grafana
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
-    networks:
-      - ridecraft_network
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   container_name: grafana
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=admin
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #   depends_on:
+  #     - prometheus
+  #   networks:
+  #     - ridecraft_network
 
 networks:
   ridecraft_network:
     driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
