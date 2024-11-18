@@ -22,7 +22,7 @@ services:
 
   driver-service:
     build:
-      context: ./driver-service
+      context: ./services/driver-service
     container_name: driver-service
     ports:
       - "8001:8001"
