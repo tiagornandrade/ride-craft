@@ -1,6 +1,6 @@
 ### Get Drivers
 GET http://localhost:8000/drivers/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTkyNzI5Mn0.brYjX65tdEHZku0A0wY_bLxuZ1N-hfmIgQP2HG4Rhbw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hby5zaWx2YSIsImV4cCI6MTczMTk4MDEzOH0.XfhmkwzKnNC7SoquSAIE1BAAOS0jSsZSLBFOrgE3FBc
 ontent-Type: application/json
 
 ### Get Locations
